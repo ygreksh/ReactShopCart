@@ -15,7 +15,7 @@ import { addToCart } from './actions/cartActions'
                         <div className="card-image">
                             <img src={item.img} alt={item.title}/>
                             <span className="card-title">{item.title}</span>
-                            <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{this.handleClick(item.id)}}><i className="material-icons">add</i></span>
+                            <button to="/" onClick={()=>{this.handleClick(item.id)}}>В корзину</button>
                         </div>
 
                         <div className="card-content">
