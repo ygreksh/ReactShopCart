@@ -4,7 +4,7 @@ import Item3 from '../../images/item3.jpg'
 import Item4 from '../../images/item4.jpg'
 import Item5 from '../../images/item5.jpg'
 import Item6 from '../../images/item6.jpg'
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from '../actions/action-types/cart-actions'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING, SELECT_ITEM } from '../actions/action-types/cart-actions'
 
 
 const initState = {
@@ -17,10 +17,21 @@ const initState = {
         {id:6,title:'Шкаф-купе', description: "Шкаф-купе двухобъемный. Одна дверь зеркальная",price:90,img: Item6}
     ],
     addedItems:[],
-    total: 0
+    totalScore: 0,
+    total: 0,
+    selectedItem: null
 
 }
 const cartReducer= (state = initState,action)=>{
+
+    //SELECT ITEM 
+    if(action.type === SELECT_ITEM){
+        let selectedItem = state.items.find(item => item.id === action.id)
+        return{
+            ...state, 
+            selectedItem: selectedItem
+        }
+    }
    
     //INSIDE HOME COMPONENT
     if(action.type === ADD_TO_CART){
@@ -32,18 +43,19 @@ const cartReducer= (state = initState,action)=>{
             addedItem.quantity += 1 
              return{
                 ...state,
-                 total: state.total + addedItem.price 
+                //total: addedItem.
+                 totalScore: state.totalScore + addedItem.price 
                   }
         }
          else{
             addedItem.quantity = 1;
-            //calculating the total
-            let newTotal = state.total + addedItem.price 
+            //calculating the totalScore
+            let newtotalScore = state.totaLscore + addedItem.price 
             
             return{
                 ...state,
                 addedItems: [...state.addedItems, addedItem],
-                total : newTotal
+                totalScore : newtotalScore
             }
             
         }
@@ -53,22 +65,22 @@ const cartReducer= (state = initState,action)=>{
         let new_items = state.addedItems.filter(item=> action.id !== item.id)
         
         //calculating the total
-        let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity )
+        let newtotalScore = state.totalScore - (itemToRemove.price * itemToRemove.quantity )
         console.log(itemToRemove)
         return{
             ...state,
             addedItems: new_items,
-            total: newTotal
+            totalScore: newtotalScore
         }
     }
     //INSIDE CART COMPONENT
     if(action.type=== ADD_QUANTITY){
         let addedItem = state.items.find(item=> item.id === action.id)
           addedItem.quantity += 1 
-          let newTotal = state.total + addedItem.price
+          let newtotalScore = state.totalScore + addedItem.price
           return{
               ...state,
-              total: newTotal
+              totalScore: newtotalScore
           }
     }
     if(action.type=== SUB_QUANTITY){  
@@ -76,19 +88,19 @@ const cartReducer= (state = initState,action)=>{
         //if the qt == 0 then it should be removed
         if(addedItem.quantity === 1){
             let new_items = state.addedItems.filter(item=>item.id !== action.id)
-            let newTotal = state.total - addedItem.price
+            let newtotalScore = state.totalScore - addedItem.price
             return{
                 ...state,
                 addedItems: new_items,
-                total: newTotal
+                totalScore: newtotalScore
             }
         }
         else {
             addedItem.quantity -= 1
-            let newTotal = state.total - addedItem.price
+            let newtotalScore = state.totalScore - addedItem.price
             return{
                 ...state,
-                total: newTotal
+                totalScore: newtotalScore
             }
         }
         
@@ -97,14 +109,14 @@ const cartReducer= (state = initState,action)=>{
     if(action.type=== ADD_SHIPPING){
           return{
               ...state,
-              total: state.total + 6
+              totalScore: state.totalScore + 6
           }
     }
 
     if(action.type=== 'SUB_SHIPPING'){
         return{
             ...state,
-            total: state.total - 6
+            totalScore: state.totalScore - 6
         }
   }
     

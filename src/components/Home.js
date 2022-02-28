@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { addToCart } from './actions/cartActions'
+import { addToCart, selectItem } from './actions/cartActions'
+import Product from './Product';
 
- class Home extends Component{
+ class Home extends Component {
     
-    handleClick = (id)=>{
+    handleAddClick = (id)=>{
         this.props.addToCart(id); 
+    }
+
+    handleProductClick = (id) => {
+        this.props.selectItem(id);
     }
 
     render(){
         let itemList = this.props.items.map(item=>{
             return(
-                <div className="card" key={item.id}>
-                        <div className="card-image">
-                            <img src={item.img} alt={item.title}/>
-                            <span className="card-title">{item.title}</span>
-                            <button to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{this.handleClick(item.id)}}><i className="material-icons">add</i></button>
-                        </div>
-
-                        <div className="card-content">
-                            <p>{item.description}</p>
-                            <p><b>Price: {item.price}$</b></p>
-                        </div>
-                 </div>
-
+                
+                    <Product product={item} onAddClick={this.handleAddClick} onProductClick={this.handleProductClick}/>
             )
         })
 
@@ -45,7 +39,8 @@ const mapStateToProps = (state)=>{
 const mapDispatchToProps= (dispatch)=>{
     
     return{
-        addToCart: (id)=>{dispatch(addToCart(id))}
+        addToCart: (id) => {dispatch(addToCart(id))},
+        selectedItem: (id) => {dispatch(selectItem(id))} 
     }
 }
 

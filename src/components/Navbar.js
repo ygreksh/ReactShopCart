@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
     return(
             <nav className="nav-wrapper">
                 <div className="container">
-                    <Link to="/" className="brand-logo">Shopping</Link>
+                    <Link to="/" className="brand-logo">Магазин</Link>
                     
                     <ul className="right">
-                        <li><Link to="/cart">My cart</Link></li>
+                        <li><Link to="/cart">Корзина ({0})</Link></li>
                     </ul>
                 </div>
             </nav>
