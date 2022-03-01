@@ -6,30 +6,31 @@ class Product extends Component {
         super(props);
         this.onAddClick = this.props.onAddClick;
         this.onProductClick = this.props.onProductClick;
+        this.item = this.props.product;
+
     }
     
-    handleAddClick(item) {
-        this.onAddClick(item.id);
+    handleAddClick() {
+        this.onAddClick(this.item.id);
     }
-    handleProductClick(item) {
+    handleProductClick() {
         //this.onProductClick(item);
-        console.log(item.id);
+        console.log(this.item.id);
     }
 
     render() {
-        const item = this.props.product;
 
         return (
-            <div className="card" key={item.id}>
+            <div className="card" key={this.item.id}>
                         <div className="card-image">
-                            <img src={item.img} alt={item.title} onClick={item => this.handleProductClick(item)}/>
-                            <span className="card-title">{item.title}</span>
-                            <button to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{this.handleAddClick(item)}}><i className="material-icons">add</i></button>
+                            <img src={this.item.img} alt={this.item.title} onClick={() => this.handleProductClick()}/>
+                            <span className="card-title">{this.item.title}</span>
+                            <button to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{this.handleAddClick()}}><i className="material-icons">add</i></button>
                         </div>
 
                         <div className="card-content">
-                            <p>{item.description}</p>
-                            <p><b>Цена: {item.price}$</b></p>
+                            <p>{this.item.description}</p>
+                            <p><b>Цена: {this.item.price}$</b></p>
                         </div>
             </div>
             )

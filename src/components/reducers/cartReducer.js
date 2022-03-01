@@ -4,7 +4,7 @@ import Item3 from '../../images/item3.jpg'
 import Item4 from '../../images/item4.jpg'
 import Item5 from '../../images/item5.jpg'
 import Item6 from '../../images/item6.jpg'
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING, SELECT_ITEM } from '../actions/action-types/cart-actions'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, SELECT_ITEM } from '../actions/action-types/cart-actions'
 
 
 const initState = {
