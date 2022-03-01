@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-//import { addShipping } from './actions/cartActions'
+import { addShipping } from './actions/cartActions'
 class Recipe extends Component{
     
     componentWillUnmount() {
@@ -28,7 +28,7 @@ class Recipe extends Component{
                                 <span>Shipping(+6$)</span>
                             </label>
                         </li>
-                        <li className="collection-item"><b>Total: {this.props.totalScore} $</b></li>
+                        <li className="collection-item"><b>Итого: {this.props.totalScore} $</b></li>
                     </div>
                     <div className="checkout">
                         <button className="waves-effect waves-light btn">Checkout</button>

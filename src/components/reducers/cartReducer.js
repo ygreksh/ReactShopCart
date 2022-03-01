@@ -18,7 +18,7 @@ const initState = {
     ],
     addedItems:[],
     totalScore: 0,
-    total: 0,
+    totalCart: 0,
     selectedItem: null
 
 }
@@ -35,8 +35,9 @@ const cartReducer= (state = initState,action)=>{
    
     //INSIDE HOME COMPONENT
     if(action.type === ADD_TO_CART){
-          let addedItem = state.items.find(item=> item.id === action.id)
-          //check if the action id exists in the addedItems
+        let addedItem = state.items.find(item=> item.id === action.id)
+        //check if the action id exists in the addedItems
+         //let newTotalCart
          let existed_item= state.addedItems.find(item=> action.id === item.id)
          if(existed_item)
          {
@@ -50,11 +51,12 @@ const cartReducer= (state = initState,action)=>{
          else{
             addedItem.quantity = 1;
             //calculating the totalScore
-            let newtotalScore = state.totaLscore + addedItem.price 
+            let newtotalScore = state.totalScore + addedItem.price 
             
             return{
                 ...state,
                 addedItems: [...state.addedItems, addedItem],
+                totalCart: state.totalCart + 1,
                 totalScore : newtotalScore
             }
             
@@ -64,12 +66,14 @@ const cartReducer= (state = initState,action)=>{
         let itemToRemove= state.addedItems.find(item=> action.id === item.id)
         let new_items = state.addedItems.filter(item=> action.id !== item.id)
         
-        //calculating the total
+        //calculating the totalScore and totalCart
         let newtotalScore = state.totalScore - (itemToRemove.price * itemToRemove.quantity )
+        let newTotalCart = state.totalCart - 1
         console.log(itemToRemove)
         return{
             ...state,
             addedItems: new_items,
+            totalCart: newTotalCart,
             totalScore: newtotalScore
         }
     }
