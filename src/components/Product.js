@@ -15,7 +15,7 @@ const Product = (props) => {
     const handleProductClick = () => {
         //this.onProductClick(item);
         console.log(item.id);
-        //useCallback(() => navigate('/productdetails'));
+        navigate('/productdetails');
         
     }
 
