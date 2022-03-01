@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-
+import React, { Component,useCallback } from "react"
+import { useNavigate } from 'react-router-dom';
 
 class Product extends Component {
     constructor(props) {
@@ -16,6 +16,8 @@ class Product extends Component {
     handleProductClick() {
         //this.onProductClick(item);
         console.log(this.item.id);
+        // const navigate = useNavigate();
+        // useCallback(() => navigate('/productdetails'));
     }
 
     render() {

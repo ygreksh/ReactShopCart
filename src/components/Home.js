@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, useCallback } from 'react';
 import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 import { addToCart, selectItem } from './actions/cartActions'
 import Product from './Product';
 
  class Home extends Component {
+
+    
     
     handleAddClick = (id)=>{
         this.props.addToCart(id); 
@@ -11,7 +14,7 @@ import Product from './Product';
 
     handleProductClick = (id) => {
         this.props.selectItem(id);
-        console.log(id);
+        
     }
 
     render(){
