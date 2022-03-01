@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
  const Navbar = (props)=>{
     let totalCart = props.totalCart
+    //let addedItems = props.addedItems;
     return(
             <nav className="nav-wrapper">
                 <div className="container">
@@ -21,7 +22,8 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
     return {
-      totalCart: state.totalCart
+        //addedItems: state.addedItems,
+        totalCart: state.totalCart
     }
   }
 

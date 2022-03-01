@@ -32,9 +32,12 @@ class Cart extends Component{
                                     <div className="item-desc">
                                         <span className="title">{item.title}</span>
                                         <p>{item.desc}</p>
-                                        <p><b>Price: {item.price}$</b></p> 
+                                        <p><b>Цена: {item.price}$</b></p> 
                                         <p>
-                                            <b>Quantity: {item.quantity}</b> 
+                                            <b>Количество: {item.quantity}</b> 
+                                        </p>
+                                        <p>
+                                            <b>Стоимость: {item.quantity * item.price}$</b> 
                                         </p>
                                         <div className="add-remove">
                                             <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleAddQuantity(item.id)}}>arrow_drop_up</i></Link>
@@ -50,12 +53,12 @@ class Cart extends Component{
             ):
 
              (
-                <p>Nothing.</p>
+                <p>Пусто.</p>
              )
        return(
             <div className="container">
                 <div className="cart">
-                    <h5>You have ordered:</h5>
+                    <h5>Ваш заказ:</h5>
                     <ul className="collection">
                         {addedItems}
                     </ul>

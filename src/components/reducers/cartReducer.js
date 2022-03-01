@@ -37,15 +37,14 @@ const cartReducer= (state = initState,action)=>{
     if(action.type === ADD_TO_CART){
         let addedItem = state.items.find(item=> item.id === action.id)
         //check if the action id exists in the addedItems
-         //let newTotalCart
-         let existed_item= state.addedItems.find(item=> action.id === item.id)
-         if(existed_item)
-         {
+        let existed_item= state.addedItems.find(item=> action.id === item.id)
+        if(existed_item)
+        {
             addedItem.quantity += 1 
              return{
                 ...state,
-                //total: addedItem.
-                 totalScore: state.totalScore + addedItem.price 
+                totalCart: state.totalCart + 1,
+                totalScore: state.totalScore + addedItem.price 
                   }
         }
          else{
@@ -68,7 +67,7 @@ const cartReducer= (state = initState,action)=>{
         
         //calculating the totalScore and totalCart
         let newtotalScore = state.totalScore - (itemToRemove.price * itemToRemove.quantity )
-        let newTotalCart = state.totalCart - 1
+        let newTotalCart = state.totalCart - (itemToRemove.quantity)
         console.log(itemToRemove)
         return{
             ...state,
@@ -80,49 +79,43 @@ const cartReducer= (state = initState,action)=>{
     //INSIDE CART COMPONENT
     if(action.type=== ADD_QUANTITY){
         let addedItem = state.items.find(item=> item.id === action.id)
-          addedItem.quantity += 1 
+        let newTotalCart
+        newTotalCart = state.totalCart + 1
+        addedItem.quantity += 1 
           let newtotalScore = state.totalScore + addedItem.price
           return{
               ...state,
+              totalCart: newTotalCart,
               totalScore: newtotalScore
           }
     }
     if(action.type=== SUB_QUANTITY){  
         let addedItem = state.items.find(item=> item.id === action.id) 
+        let newTotalCart = state.totalCart
         //if the qt == 0 then it should be removed
         if(addedItem.quantity === 1){
+            newTotalCart -= 1
             let new_items = state.addedItems.filter(item=>item.id !== action.id)
             let newtotalScore = state.totalScore - addedItem.price
             return{
                 ...state,
                 addedItems: new_items,
+                totalCart: newTotalCart,
                 totalScore: newtotalScore
             }
         }
         else {
             addedItem.quantity -= 1
+            newTotalCart -= 1
             let newtotalScore = state.totalScore - addedItem.price
             return{
                 ...state,
+                totalCart: newTotalCart,
                 totalScore: newtotalScore
             }
         }
         
     }
-
-    if(action.type=== ADD_SHIPPING){
-          return{
-              ...state,
-              totalScore: state.totalScore + 6
-          }
-    }
-
-    if(action.type=== 'SUB_SHIPPING'){
-        return{
-            ...state,
-            totalScore: state.totalScore - 6
-        }
-  }
     
   else{
     return state

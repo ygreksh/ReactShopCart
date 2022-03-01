@@ -13,7 +13,7 @@ class Product extends Component {
     }
     handleProductClick(item) {
         //this.onProductClick(item);
-        console.log(item.title);
+        console.log(item.id);
     }
 
     render() {

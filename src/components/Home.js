@@ -33,14 +33,15 @@ import Product from './Product';
 }
 const mapStateToProps = (state)=>{
     return {
-      items: state.items
+        items: state.items,
+        selectItem: state.selectItem
     }
   }
 const mapDispatchToProps= (dispatch)=>{
     
     return{
         addToCart: (id) => {dispatch(addToCart(id))},
-        selectedItem: (id) => {dispatch(selectItem(id))} 
+        selectItem: (id) => {dispatch(selectItem(id))} 
     }
 }
 
