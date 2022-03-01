@@ -4,19 +4,18 @@ import { useNavigate } from 'react-router-dom';
 const Product = (props) => {
     
         const onAddClick = props.onAddClick;
-        const onProductClick = props.onProductClick;
-        const item = props.product;
-        const navigate = useNavigate();
+        this.onProductClick = this.props.onProductClick;
+        this.item = this.props.product;
     
     
     const handleAddClick = () => {
-        onAddClick(item.id);
+        onAddClick(this.item.id);
     }
     const handleProductClick = () => {
         //this.onProductClick(item);
-        console.log(item.id);
-        //useCallback(() => navigate('/productdetails'));
-        
+        console.log(this.item.id);
+        // const navigate = useNavigate();
+        // useCallback(() => navigate('/productdetails'));
     }
 
     
