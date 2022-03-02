@@ -1,10 +1,10 @@
-import React, { Component,useCallback } from "react"
+import React from "react"
 import { useNavigate } from 'react-router-dom';
 
 const Product = (props) => {
     
         const onAddClick = props.onAddClick;
-        const onProductClick = props.onProductClick;
+        //const onProductClick = props.onProductClick;
         const item = props.product;
         const navigate = useNavigate();
     
@@ -16,7 +16,6 @@ const Product = (props) => {
         //this.onProductClick(item);
         console.log(item.id);
         navigate('/productdetails');
-        
     }
 
     

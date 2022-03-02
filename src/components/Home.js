@@ -1,6 +1,5 @@
-import React, { Component, useCallback } from 'react';
+import React, { Component} from 'react';
 import { connect } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
 import { addToCart, selectItem } from './actions/cartActions'
 import Product from './Product';
 
@@ -14,13 +13,12 @@ import Product from './Product';
 
     handleProductClick = (id) => {
         this.props.selectItem(id);
-        
+        console.log('SelectedItem = ${id}');
     }
 
     render(){
         let itemList = this.props.items.map(item=>{
             return(
-                
                     <Product product={item} onAddClick={this.handleAddClick} onProductClick={this.handleProductClick}/>
             )
         })

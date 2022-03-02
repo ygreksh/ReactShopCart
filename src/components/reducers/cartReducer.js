@@ -19,7 +19,7 @@ const initState = {
     addedItems:[],
     totalScore: 0,
     totalCart: 0,
-    selectedItem: null
+    selectedItem: 0
 
 }
 const cartReducer= (state = initState,action)=>{
