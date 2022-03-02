@@ -19,7 +19,7 @@ import Product from './Product';
     render(){
         let itemList = this.props.items.map(item=>{
             return(
-                    <Product product={item} onAddClick={this.handleAddClick} onProductClick={this.handleProductClick}/>
+                    <Product key={item.id} product={item} onAddClick={this.handleAddClick} onProductClick={this.handleProductClick}/>
             )
         })
 

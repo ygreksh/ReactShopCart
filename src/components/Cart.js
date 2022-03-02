@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { removeItem,addQuantity,subtractQuantity } from './actions/cartActions'
 import Recipe from './Recipe'
 class Cart extends Component{
-
+    
     //to remove the item completely
     handleRemove = (id)=>{
         this.props.removeItem(id);

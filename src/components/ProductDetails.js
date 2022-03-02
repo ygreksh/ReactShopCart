@@ -4,8 +4,6 @@ import { addToCart } from './actions/cartActions'
 
 const ProductDelails = ({selectedItem, addToCart}) => {
 
-    //const selectedItem = props.selectedItem;
-    //const { selectedItem } = this.props
 
     return (
             <div>

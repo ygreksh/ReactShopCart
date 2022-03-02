@@ -6,6 +6,7 @@ const Product = (props) => {
         const onAddClick = props.onAddClick;
         const onProductClick = props.onProductClick;
         const item = props.product;
+        const key = props.key;
         const navigate = useNavigate();
     
     
@@ -21,7 +22,7 @@ const Product = (props) => {
     
 
         return (
-            <div className="card" key={item.id}>
+            <div className="card" key={key}>
                         <div className="card-image">
                             <img src={item.img} alt={item.title} onClick={() => handleProductClick()}/>
                             <span className="card-title">{item.title}</span>
