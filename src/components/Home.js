@@ -12,8 +12,8 @@ import Product from './Product';
     }
 
     handleProductClick = (id) => {
+        console.log(`SelectedItem = ${id}`);
         this.props.selectItem(id);
-        console.log('SelectedItem = ${id}');
     }
 
     render(){
@@ -35,8 +35,7 @@ import Product from './Product';
 }
 const mapStateToProps = (state)=>{
     return {
-        items: state.items,
-        selectItem: state.selectItem
+        items: state.items
     }
   }
 const mapDispatchToProps= (dispatch)=>{

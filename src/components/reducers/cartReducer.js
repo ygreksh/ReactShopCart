@@ -19,7 +19,7 @@ const initState = {
     addedItems:[],
     totalScore: 0,
     totalCart: 0,
-    selectedItem: 0
+    selectedItem: null
 
 }
 const cartReducer= (state = initState,action)=>{
@@ -68,7 +68,6 @@ const cartReducer= (state = initState,action)=>{
         //calculating the totalScore and totalCart
         let newtotalScore = state.totalScore - (itemToRemove.price * itemToRemove.quantity )
         let newTotalCart = state.totalCart - (itemToRemove.quantity)
-        console.log(itemToRemove)
         return{
             ...state,
             addedItems: new_items,

@@ -2,7 +2,7 @@
 import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, SELECT_ITEM} from './action-types/cart-actions'
 
 //select product
-export const selectItem= (id)=>{
+export const selectItem = (id)=>{
     return{
         type: SELECT_ITEM,
         id
