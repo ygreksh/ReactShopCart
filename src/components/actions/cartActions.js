@@ -2,10 +2,10 @@
 import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, SELECT_ITEM, LOAD_PRODUCTS} from './action-types/cart-actions'
 
 // load products
-export const loadProducts = (products) => {
+export const loadProducts = (items) => {
     return{
         type: LOAD_PRODUCTS,
-        products
+        items
     }
 }
 

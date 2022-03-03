@@ -30,7 +30,7 @@ const cartReducer= (state = initState,action)=>{
     if (action.type === LOAD_PRODUCTS) {
         return {
             ...state,
-            items: action.payload
+            items: action.items
         }
     }
 

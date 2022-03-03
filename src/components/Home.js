@@ -7,21 +7,16 @@ import Product from './Product';
 
     
     componentDidMount() {
-        let loadedProducts = fetch("http://localhost:3004/products").then(res => res.json()).then(result => this.setState({
-            loading: false,
-            products: result
-        })).catch(console.log);
-        
-        this.props.loadProducts(loadedProducts);
+        //let loadedProducts = fetch("http://localhost:3004/products").then(res => res.json()).then(result => this.props.loadProducts({result})).catch(console.log);
+        fetch("http://localhost:3004/products").then(res => res.json()).then(result => this.props.loadProducts(result)).catch(console.log);
+        //console.log(loadedProducts);
+        //this.props.loadProducts(loadedProducts);
     }
 
     handleLoadClick = () => {
-        let loadedProducts = fetch("http://localhost:3004/products").then(res => res.json()).then(result => this.setState({
-            loading: false,
-            products: result
-        })).catch(console.log);
-        
-        this.props.loadProducts(loadedProducts);
+        fetch("http://localhost:3004/products").then(res => res.json()).then(result => this.props.loadProducts(result)).catch(console.log);
+        //console.log(loadedProducts);
+        //this.props.loadProducts(loadedProducts);
     }
 
     handleAddClick = (id)=>{
