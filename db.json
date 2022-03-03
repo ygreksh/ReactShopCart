@@ -1,10 +1,10 @@
 {
 "products": [
-    {"id":1,"title":"Стол  кухонный", "description": "Деверянный кухонный стол 60смх80см", "price":110,"img":"Item1"},
-    {"id":2,"title":"Стол письменный", "description": "Письменный стол с выдвижными ящиками", "price":80,"img": "Item2"},
-    {"id":3,"title":"Стул офисный", "description": "Простой офисный стул без регулировок","price":120,"img": "Item3"},
-    {"id":4,"title":"Диван раскладной", "description": "Мягкий тканевый диван для гостинной", "price":260,"img":"Item4"},
-    {"id":5,"title":"Детская кровать", "description": "Детская кровать с ящиками", "price":160,"img": "Item5"},
-    {"id":6,"title":"Шкаф-купе", "description": "Шкаф-купе двухобъемный. Одна дверь зеркальная","price":90,"img": "Item6"}
+    {"id":1,"title":"Стол  кухонный", "description": "Деверянный кухонный стол 60смх80см", "price":110,"img":"https://hi-tech.md/images/thumbnails/230/230/detailed/7/ht_0580595001476959575_1.jpg"},
+    {"id":2,"title":"Стол письменный", "description": "Письменный стол с выдвижными ящиками", "price":80,"img": "https://kuhni-tiraspol.ru/d/pismennyy_stol_pk-4.jpg"},
+    {"id":3,"title":"Стул офисный", "description": "Простой офисный стул без регулировок","price":120,"img": "https://meb-biz.ru/upload/iblock/52b/52bbed27ef909de635792effdce0967c.jpg"},
+    {"id":4,"title":"Диван раскладной", "description": "Мягкий тканевый диван для гостинной", "price":260,"img":"https://hi-tech.md/images/detailed/184/1_eeg4-xk.jpg"},
+    {"id":5,"title":"Детская кровать", "description": "Детская кровать с ящиками", "price":160,"img": "https://www.chudochado-nn.ru/file/detskaya-krovatka-gerda/Gerda_shimo-belyi.jpg"},
+    {"id":6,"title":"Шкаф-купе", "description": "Шкаф-купе двухобъемный. Одна дверь зеркальная","price":90,"img": "https://hoff.ru/upload/iblock/443/443b7df8173648210ee59cc6f0af561e.jpg"}
 ]
 }
