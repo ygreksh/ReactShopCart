@@ -25,6 +25,9 @@ import Product from './Product';
 
         return(
             <div className="container">
+                <div>
+                    <button onClick={()=>{}} >Добавить товар</button>
+                </div>
                 <h3 className="center">Список товаров</h3>
                 <div className="box">
                     {itemList}
