@@ -4,17 +4,17 @@ import Item3 from '../../images/item3.jpg'
 import Item4 from '../../images/item4.jpg'
 import Item5 from '../../images/item5.jpg'
 import Item6 from '../../images/item6.jpg'
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, SELECT_ITEM } from '../actions/action-types/cart-actions'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, SELECT_ITEM, LOAD_PRODUCTS } from '../actions/action-types/cart-actions'
 
 
 const initState = {
     items: [
-        {id:1,title:'Стол  кухонный', description: "Деверянный кухонный стол 60смх80см", price:110,img:Item1},
-        {id:2,title:'Стол письменный', description: "Письменный стол с выдвижными ящиками", price:80,img: Item2},
-        {id:3,title:'Стул офисный', description: "Простой офисный стул без регулировок",price:120,img: Item3},
-        {id:4,title:'Диван раскладной', description: "Мягкий тканевый диван для гостинной", price:260,img:Item4},
-        {id:5,title:'Детская кровать', description: "Детская кровать с ящиками", price:160,img: Item5},
-        {id:6,title:'Шкаф-купе', description: "Шкаф-купе двухобъемный. Одна дверь зеркальная",price:90,img: Item6}
+        {id:1,title:'Стол  кухонный', description: "Деверянный кухонный стол 60смх80см", price:110,img:Item1}
+        // {id:2,title:'Стол письменный', description: "Письменный стол с выдвижными ящиками", price:80,img: Item2},
+        // {id:3,title:'Стул офисный', description: "Простой офисный стул без регулировок",price:120,img: Item3},
+        // {id:4,title:'Диван раскладной', description: "Мягкий тканевый диван для гостинной", price:260,img:Item4},
+        // {id:5,title:'Детская кровать', description: "Детская кровать с ящиками", price:160,img: Item5},
+        // {id:6,title:'Шкаф-купе', description: "Шкаф-купе двухобъемный. Одна дверь зеркальная",price:90,img: Item6}
     ],
     addedItems:[],
     totalScore: 0,
@@ -22,7 +22,17 @@ const initState = {
     selectedItem: null
 
 }
+
+
+
 const cartReducer= (state = initState,action)=>{
+    // LOAD_PRODUCTS
+    if (action.type === LOAD_PRODUCTS) {
+        return {
+            ...state,
+            items: action.payload
+        }
+    }
 
     //SELECT ITEM 
     if(action.type === SELECT_ITEM){

@@ -1,5 +1,13 @@
 
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, SELECT_ITEM} from './action-types/cart-actions'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, SELECT_ITEM, LOAD_PRODUCTS} from './action-types/cart-actions'
+
+// load products
+export const loadProducts = (products) => {
+    return{
+        type: LOAD_PRODUCTS,
+        products
+    }
+}
 
 //select product
 export const selectItem = (id)=>{
