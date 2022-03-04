@@ -2,14 +2,32 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { addProduct } from "./actions/cartActions";
 import {connect} from "react-redux"
-
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup';
 
 function Form({items}) {
-    
-    const { register, handleSubmit } = useForm();
+
+    const productSchema = yup
+    .object()
+    .shape({
+        title: yup.string(),
+        description: yup.string(),
+        price: yup.string(),
+        img: yup.number()
+    });
+
+    // let schema = object({
+    //     title: string().required(),
+    //     description: string().required(),
+    //     price: number().required().positive().integer(),
+    //     img: string().url().nullable(),
+    // });
+
+    const { register, handleSubmit } = useForm({
+        resolver: yupResolver(productSchema),
+    });
 
     const putItem = (data) => {
-        //const data = { username: 'example' };
 
         fetch("http://localhost:3004/products", {
         method: 'POST', // or 'PUT'
@@ -28,40 +46,36 @@ function Form({items}) {
     }
 
     const onSubmitForm = data => {
-        console.log(data);    
-        addProduct(data);
-        putItem(data);
-        console.log(items);
+        //addProduct(data);
+        const newProduct = productSchema.validate(data);
+        if (!newProduct) {
+            putItem(newProduct);
+        }
+        //console.log(items);
     }
+
+    
     
         return(
             <form className="addProductForm" onSubmit={handleSubmit(onSubmitForm)} >
                 <div>
                     <input type="text" className="form-control" name="title" placeholder="Название товара"
-                        {...register("title", {
-                            required: "Required",
-                          })} 
+                        {...register("title")} 
                         />
                 </div>
                 <div>
                     <input type="text" className="foorm-control" name="description" placeholder="Описание"
-                        {...register("description", {
-                            required: "Required",
-                          })} 
+                        {...register("description")} 
                         />
                 </div>
                 <div>
                     <input type="text" className="foorm-control" name="image" placeholder="Ссылка на изображение"
-                        {...register("img", {
-                            required: "Required",
-                          })} 
+                        {...register("img")} 
                         />
                 </div>
                 <div>
                     <input type="number" className="foorm-control" name="price" placeholder="Цена"
-                        {...register("price", {
-                            required: "Required",
-                          })} 
+                        {...register("price")} 
                         />
                 </div>
                 <button type="submit" className="btn btn-primary" >Добавить</button>

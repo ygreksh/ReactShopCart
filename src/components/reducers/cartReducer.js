@@ -32,7 +32,6 @@ const cartReducer= (state = initState,action)=>{
             id: state.items.quantity + 1,
             ...action.item
         }
-        console.log(newItem);
         return {
             ...state,
             items: [...state.items, newItem]
