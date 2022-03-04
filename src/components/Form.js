@@ -8,9 +8,29 @@ function Form({items}) {
     
     const { register, handleSubmit } = useForm();
 
+    const putItem = (data) => {
+        //const data = { username: 'example' };
+
+        fetch("http://localhost:3004/products", {
+        method: 'POST', // or 'PUT'
+        headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
     const onSubmitForm = data => {
         console.log(data);    
         addProduct(data);
+        putItem(data);
         console.log(items);
     }
     
@@ -32,7 +52,7 @@ function Form({items}) {
                 </div>
                 <div>
                     <input type="text" className="foorm-control" name="image" placeholder="Ссылка на изображение"
-                        {...register("image", {
+                        {...register("img", {
                             required: "Required",
                           })} 
                         />
