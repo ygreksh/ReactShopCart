@@ -1,10 +1,10 @@
 import Item1 from '../../images/item1.jpg'
-import Item2 from '../../images/item2.jpg'
-import Item3 from '../../images/item3.jpg'
-import Item4 from '../../images/item4.jpg'
-import Item5 from '../../images/item5.jpg'
-import Item6 from '../../images/item6.jpg'
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, SELECT_ITEM, LOAD_PRODUCTS } from '../actions/action-types/cart-actions'
+// import Item2 from '../../images/item2.jpg'
+// import Item3 from '../../images/item3.jpg'
+// import Item4 from '../../images/item4.jpg'
+// import Item5 from '../../images/item5.jpg'
+// import Item6 from '../../images/item6.jpg'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, SELECT_ITEM, LOAD_PRODUCTS, ADD_PRODUCT } from '../actions/action-types/cart-actions'
 
 
 const initState = {
@@ -26,6 +26,18 @@ const initState = {
 
 
 const cartReducer= (state = initState,action)=>{
+    // ADD_PRODUCT
+    if (action.type === ADD_PRODUCT) {
+        let newItem = {
+            id: state.items.quantity + 1,
+            ...action.item
+        }
+        return {
+            ...state,
+            items: [...state.items, newItem]
+        }
+    }
+
     // LOAD_PRODUCTS
     if (action.type === LOAD_PRODUCTS) {
         return {

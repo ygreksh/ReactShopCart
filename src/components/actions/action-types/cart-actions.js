@@ -6,3 +6,4 @@ export const SUB_QUANTITY = 'SUB_QUANTITY';
 export const ADD_QUANTITY = 'ADD_QUANTITY';
 export const SELECT_ITEM = 'SELECT_ITEM';
 export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
+export const ADD_PRODUCT = 'ADD_PRODUCT';

@@ -1,68 +1,63 @@
-import { Component } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { addProduct } from "./actions/cartActions";
+import {connect} from "react-redux"
 
-class Form extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-           isLoading: true,
-           products: [],
-           error: null
-        }
+
+function Form({items}) {
+    
+    const { register, handleSubmit } = useForm();
+
+    const onSubmitForm = data => {
+        console.log(data);    
+        addProduct(data);
+        console.log(items);
     }
-
-    getFetchProducts() {
-        this.setState({
-            loading: true
-        }, () => {
-            fetch("http://localhost:3004/products").then(res => res.json()).then(result => this.setState({
-                loading: false,
-                products: result
-            })).catch(console.log);
-        })
-    }
-
-    componentDidMount() {
-        this.getFetchProducts();
-    }
-
-    handleUserInput = (e) => {
-        const title = e.target.title;
-        const description = e.target.description;
-        const image = e.target.image;
-        const price = e.target.price;
-        this.setState({});
-    }
-
-    render() {
+    
         return(
-            <form className="addProductForm">
+            <form className="addProductForm" onSubmit={handleSubmit(onSubmitForm)} >
                 <div>
-                    <label htmlFor="title">Email address</label>
-                    <input type="text" className="form-control" name="title"
-                        value={this.state.title}
-                        onChange={this.handleUserInput} />
+                    <input type="text" className="form-control" name="title" placeholder="Название товара"
+                        {...register("title", {
+                            required: "Required",
+                          })} 
+                        />
                 </div>
                 <div>
-                    <label htmlFor="description">Email address</label>
-                    <input type="text" className="foorm-control" name="description"
-                        value={this.state.description}
-                        onChange={this.handleUserInput} />
+                    <input type="text" className="foorm-control" name="description" placeholder="Описание"
+                        {...register("description", {
+                            required: "Required",
+                          })} 
+                        />
                 </div>
                 <div>
-                    <label htmlFor="image">Email address</label>
-                    <input type="text" className="foorm-control" name="image"
-                        value={this.state.image}
-                        onChange={this.handleUserInput} />
+                    <input type="text" className="foorm-control" name="image" placeholder="Ссылка на изображение"
+                        {...register("image", {
+                            required: "Required",
+                          })} 
+                        />
                 </div>
                 <div>
-                    <label htmlFor="price">Email address</label>
-                    <input type="number" className="foorm-control" name="price"
-                        value={this.state.price}
-                        onChange={this.handleUserInput} />
+                    <input type="number" className="foorm-control" name="price" placeholder="Цена"
+                        {...register("price", {
+                            required: "Required",
+                          })} 
+                        />
                 </div>
                 <button type="submit" className="btn btn-primary" >Добавить</button>
             </form>
         )
+}
+const mapStateToProps = (state)=>{
+    return {
+        items: state.items
+    }
+  }
+
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        addProduct: (data)=>{dispatch(addProduct(data))}
     }
 }
-export default Form;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

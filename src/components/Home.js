@@ -1,61 +1,57 @@
-import React, { Component} from 'react';
+import React, { useEffect} from 'react';
 import { connect } from 'react-redux'
-import { addToCart, selectItem, loadProducts } from './actions/cartActions'
+import { useNavigate } from 'react-router-dom';
+import { addToCart, selectItem, loadProducts } from './actions/cartActions';
 import Product from './Product';
 
- class Home extends Component {
-
+const Home = (props) => {
     
-    componentDidMount() {
-        //let loadedProducts = fetch("http://localhost:3004/products").then(res => res.json()).then(result => this.props.loadProducts({result})).catch(console.log);
-        fetch("http://localhost:3004/products").then(res => res.json()).then(result => this.props.loadProducts(result)).catch(console.log);
-        //console.log(loadedProducts);
-        //this.props.loadProducts(loadedProducts);
+    useEffect(() => {
+        fetch("http://localhost:3004/products").then(res => res.json()).then(result => props.loadProducts(result)).catch(console.log);
+    });
+    const navigate = useNavigate();
+    
+
+    function handleAddProduct() {
+        navigate('/form');
     }
 
-    handleLoadClick = () => {
-        fetch("http://localhost:3004/products").then(res => res.json()).then(result => this.props.loadProducts(result)).catch(console.log);
-        //console.log(loadedProducts);
-        //this.props.loadProducts(loadedProducts);
+    const handleAddClick = (id)=>{
+        props.addToCart(id); 
     }
 
-    handleAddClick = (id)=>{
-        this.props.addToCart(id); 
-    }
-
-    handleProductClick = (id) => {
+    const handleProductClick = (id) => {
         console.log(`SelectedItem = ${id}`);
-        this.props.selectItem(id);
+        props.selectItem(id);
     }
-
-    render(){
-        let itemList;
-        if (!this.props.items) {return (
-                    <div>
-                    <h3>Список товаров пуст</h3>
-                    <button onClick={()=>{}} >Загрузить</button>
-                    </div>)
-            }
-        else {
-            itemList = this.props.items.map(item=>{
-                return(
-                        <Product key={item.id} product={item} onAddClick={this.handleAddClick} onProductClick={this.handleProductClick}/>
-                )
-            })
-        }
-
-        return(
+    // const listItems = props.items.map(
+    //     item=>
+    //     (<Product 
+    //             key={item.id} 
+    //             product={item} 
+    //             onAddClick={handleAddClick} 
+    //             onProductClick={handleProductClick}/>
+    // ))
+    return (
             <div className="container">
                 <div>
-                    <button onClick={()=>{}} >Добавить товар</button>
+                    <button className="btn btn-primary" onClick={handleAddProduct} >Добавить товар</button>
                 </div>
                 <h3 className="center">Список товаров</h3>
                 <div className="box">
-                    {itemList}
+                {
+                    props.items.map(
+                        item=>
+                        (<Product 
+                                key={item.id} 
+                                product={item} 
+                                onAddClick={handleAddClick} 
+                                onProductClick={handleProductClick}/>
+                    ))
+                }
                 </div>
             </div>
-        )
-    }
+    )
 }
 const mapStateToProps = (state)=>{
     return {

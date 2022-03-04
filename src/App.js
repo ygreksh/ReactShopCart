@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Cart from './components/Cart'
 import ProductDelails from './components/ProductDetails';
+import Form from './components/Form';
 
 
 class App extends Component {
@@ -17,7 +18,7 @@ class App extends Component {
                     <Route path="/" element={<Home/>}/>
                     <Route path="/cart" element={<Cart/>}/>
                     <Route path="/productdetails" element={<ProductDelails/>}/>
-
+                    <Route path="/form" element={<Form/>}/>
                   </Routes>
              </div>
        </BrowserRouter>
