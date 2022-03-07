@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 import { addToCart } from './actions/cartActions'
 
 const ProductDelails = ({selectedItem, addToCart}) => {
 
+    let { id } = useParams();
 
     return (
             <div>

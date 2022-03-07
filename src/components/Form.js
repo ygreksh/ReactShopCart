@@ -5,16 +5,19 @@ import {connect} from "react-redux"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 
-function Form({items}) {
+const productSchema = yup
+    .object({
+        title: yup.string().required(),
+        description: yup.string().required(),
+        img: yup.string().url().nullable(),
+        price: yup.number().positive().required(),
+    })
+    .required();
+    
 
-    const productSchema = yup
-    .object()
-    .shape({
-        title: yup.string(),
-        description: yup.string(),
-        price: yup.string(),
-        img: yup.number()
-    });
+const Form = ({items}) => {
+
+    
 
     // let schema = object({
     //     title: string().required(),
@@ -23,7 +26,7 @@ function Form({items}) {
     //     img: string().url().nullable(),
     // });
 
-    const { register, handleSubmit } = useForm({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(productSchema),
     });
 
@@ -45,13 +48,21 @@ function Form({items}) {
         });
     }
 
-    const onSubmitForm = data => {
+    const onSubmitForm = (data) => {
+        console.log('q',data);
         //addProduct(data);
-        const newProduct = productSchema.validate(data);
-        if (!newProduct) {
-            putItem(newProduct);
-        }
+        // const newProduct = productSchema.validate(data);
+        
+        // if (!newProduct) {
+        //     putItem(newProduct);
+        // } else {
+        //     console.log(`Item ${data} not validate`);
+        // }
         //console.log(items);
+
+        putItem(data);
+
+        reset();
     }
 
     
@@ -59,24 +70,28 @@ function Form({items}) {
         return(
             <form className="addProductForm" onSubmit={handleSubmit(onSubmitForm)} >
                 <div>
-                    <input type="text" className="form-control" name="title" placeholder="Название товара"
+                    <input className="form-control" placeholder="Название товара" required 
                         {...register("title")} 
                         />
+                    <p>{errors.title?.message}</p>
                 </div>
                 <div>
-                    <input type="text" className="foorm-control" name="description" placeholder="Описание"
+                    <input className="foorm-control" placeholder="Описание" required 
                         {...register("description")} 
                         />
+                    <p>{errors.description?.message}</p>
                 </div>
                 <div>
-                    <input type="text" className="foorm-control" name="image" placeholder="Ссылка на изображение"
+                    <input className="foorm-control" placeholder="Ссылка на изображение" required 
                         {...register("img")} 
                         />
+                    <p>{errors.img?.message}</p>
                 </div>
                 <div>
-                    <input type="number" className="foorm-control" name="price" placeholder="Цена"
+                    <input type="number" className="foorm-control" placeholder="Цена" required 
                         {...register("price")} 
                         />
+                    <p>{errors.price?.message}</p>
                 </div>
                 <button type="submit" className="btn btn-primary" >Добавить</button>
             </form>

@@ -16,7 +16,7 @@ const Product = (props) => {
     const handleProductClick = () => {
         onProductClick(item.id);
         //console.log(item.id);
-        navigate('/productdetails');
+        navigate(`/productdetails/${item.id}`);
     }
 
     
